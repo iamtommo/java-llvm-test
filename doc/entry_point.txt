@@ -1,0 +1,9 @@
+nm hello.o
+nm /usr/lib/x86_64-linux-gnu/crt1.o shows _undefined_ reference to main which resolves to program main by linker
+
+show entry address: readelf -h hello.o | egrep Entry
+
+entry point is not expected to return addr on stack which wont exist
+must terminate via _exit/exit()
+
+(segfault when reaching end of code - or if `ret` will pop value off stack into program counter (EIP) and segfault on code-fetch from invalid addr)
